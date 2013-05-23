@@ -1,23 +1,26 @@
 
 class TreeOfBin
-  TreeNode = Struct.new(:info, :left, :right)
 	@@number_of_nodes = 0
-	attr_accessor :root
-
+  attr_accessor :root
   def initialize
-    @root = NIL 
+    @root = nil 
 	end
 
 	def put_item(info)
-		insert(@root, info)
+		if @root == nil 
+      @root == Node.new(info) 
+      @@number_of_nodes += 1
+    else
+      insert(@root, info)
+    end
 	end
 
-	def insert(tree, info) 
-		if tree === NIL
-      tree = TreeNode.new(info, NIL, NIL)   
+	def insert(root, info) 
+		if root === nil
+      root == Node.new(info) 
 			@@number_of_nodes += 1
 		else
-     tree.info < info ? insert(tree.left, info) : insert(tree.right, info)
+     root.info < info ? insert(root.left, info) : insert(root.right, info)
 		end
 	end
 
@@ -31,4 +34,12 @@ class TreeOfBin
 	
 end
 
-
+class Node
+  attr_accessor :info, :left, :right  
+  def initialize(info=nil, left=nil, right=nil)
+    @info = info
+    @left = left
+    @right = right
+    
+  end 
+end

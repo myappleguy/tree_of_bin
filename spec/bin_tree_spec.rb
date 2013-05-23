@@ -1,4 +1,5 @@
 require "bin_tree.rb"
+
 describe TreeOfBin do
 
 	before(:each) do

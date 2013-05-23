@@ -7,7 +7,6 @@ describe TreeOfBin do
 	end
 
 	describe "newly initialized tree" do
-		
 		it "should have nil for root" do
 			@tree.root.should == NIL 
 		end
@@ -16,13 +15,6 @@ describe TreeOfBin do
 			@tree.number_of_nodes == 0
 		end
 	end
-	
-	describe "#call" do
-
-	  it "should say from call from the call method" do
-		  @tree.call.should == "from call"
-	  end
-  end
 
 	describe "#put_item" do
     it "should add new node to the root of an empty tree" do
@@ -30,15 +22,25 @@ describe TreeOfBin do
 			@tree.root.info.should == 4
 		end
 
-		it "should increment the number of nodes when a node is added" do
-			@tree.number_of_nodes.should == 1
-		end
-
 		it "should add another new node of lesser value to the left of the tree root" do
-			@tree.put_item(2)
+			@tree.put_item(4)
+			@tree.put_item(2) 
 			@tree.root.left.info.should == 2
 		end
 
+		it "should add another new node of higher value to the right of the tree root" do
+			@tree.put_item(4)
+			@tree.put_item(8) 
+			@tree.root.right.info.should == 8
+		end
+	end
+
+	describe "#number_of_nodes" do
+		it "should increment the number of nodes when a node is added" do
+			@tree.number_of_nodes.should == 0
+			@tree.put_item(4)
+			@tree.number_of_nodes.should == 1
+		end
 	end
 end
 
@@ -49,7 +51,6 @@ describe Node do
   end
 
 	describe "newly initialized node" do
-
 		describe "#info" do
 			it "should be nil" do
 			  @node.info.should == nil
@@ -67,7 +68,6 @@ describe Node do
 			  @node.right.should == nil
 			end
     end
-
 	end
 end
 

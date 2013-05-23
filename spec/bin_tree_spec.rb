@@ -35,6 +35,16 @@ describe TreeOfBin do
 		end
 	end
 
+	describe "#remove_item" do
+		it "should remove a found node from the tree" do
+			@tree.put_item(4)
+			@tree.put_item(2) 
+			@tree.put_item(8) 
+			@tree.remove_item(2)
+			@tree.root.left.info.should == nil
+		end
+	end
+
 	describe "#number_of_nodes" do
 		it "should increment the number of nodes when a node is added" do
 			@tree.number_of_nodes.should == 0

@@ -40,7 +40,7 @@ describe TreeOfBin do
 			@tree.put_item(4)
 			@tree.put_item(2) 
 			@tree.put_item(8) 
-			@tree.remove_item(2)
+			@tree.pull_item(2)
 			@tree.root.left.info.should == nil
 		end
 	end

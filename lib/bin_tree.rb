@@ -18,9 +18,20 @@ class TreeOfBin
     node.info > info ? node.left = insert(node.left, info) : node.right = insert(node.right, info)
   end
 
-  def remove_item(info)
-    return @root = nil if @root.info == info
-    find_node(@root, info)
+  def pull_item(info)
+    return @root = delete(@root) if @root.info == info
+    @root = remove_item(@root, info)
+  end
+
+  def remove_item(node, info)
+    return node = delete(node) if node.info == info
+    node.info > info ? remove_item(node.left, info) : remove_item(node.right, info)
+  end
+
+  def delete(node)
+    return nil if node.left.nil? && node.right.nil?
+    return node.left if node.right.nil?
+    return node.right
   end
 
   def find_node(node, info)

@@ -8,19 +8,19 @@ class TreeOfBin
 
 	def put_item(info)
 		if @root == nil 
-      @root == Node.new(info) 
+      @root = Node.new(info) 
       @@number_of_nodes += 1
     else
       insert(@root, info)
     end
 	end
 
-	def insert(root, info) 
-		if root === nil
-      root == Node.new(info) 
+	def insert(node, info) 
+		if node == nil
+      node = Node.new(info) 
 			@@number_of_nodes += 1
 		else
-     root.info < info ? insert(root.left, info) : insert(root.right, info)
+     node.info < info ? insert(node.left, info) : insert(node.right, info)
 		end
 	end
 
@@ -39,7 +39,6 @@ class Node
   def initialize(info=nil, left=nil, right=nil)
     @info = info
     @left = left
-    @right = right
-    
+    @right = right   
   end 
 end

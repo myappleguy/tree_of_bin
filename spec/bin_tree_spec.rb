@@ -7,6 +7,7 @@ describe TreeOfBin do
 	end
 
 	describe "newly initialized tree" do
+		
 		it "should have nil for root" do
 			@tree.root.should == NIL 
 		end
@@ -17,6 +18,7 @@ describe TreeOfBin do
 	end
 	
 	describe "#call" do
+
 	  it "should say from call from the call method" do
 		  @tree.call.should == "from call"
 	  end
@@ -36,5 +38,43 @@ describe TreeOfBin do
 			@tree.put_item(2)
 			@tree.root.left.info.should == 2
 		end
+
 	end
 end
+
+describe Node do
+
+	before(:each) do
+		@node = Node.new
+  end
+
+	describe "newly initialized node" do
+
+		describe "#info" do
+			it "should be nil" do
+			  @node.info.should == nil
+			end
+		end
+
+		describe "#left" do
+			it "should be nil" do
+			  @node.left.should == nil
+			end
+		end
+
+		describe "#right" do
+			it "should be nil" do
+			  @node.right.should == nil
+			end
+    end
+
+	end
+end
+
+
+
+
+
+
+
+

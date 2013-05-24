@@ -1,14 +1,14 @@
 
 class TreeOfBin
-  attr_reader :root
+  attr_reader :root, :number_of_nodes
 
   def initialize
     @root = nil 
-    Node.number_of_nodes = 0 
-    #look into call back from node init to increment this as part of the tree
+    @number_of_nodes = 0 
 	end
 
   def put_item(info)
+    @number_of_nodes += 1
     return @root = Node.new(info) if @root.nil?
     insert(@root, info)
   end
@@ -19,13 +19,14 @@ class TreeOfBin
   end
 
   def pull_item(info)
+    @number_of_nodes -= 1
     return @root = delete(@root) if @root.info == info
-    @root = remove_item(@root, info)
+    remove_item(@root, info)
   end
 
   def remove_item(node, info)
-    return node = delete(node) if node.info == info
-    node.info > info ? remove_item(node.left, info) : remove_item(node.right, info)
+    return delete(node) if node.info == info
+    node.info > info ? node.left = remove_item(node.left, info) : node.right = remove_item(node.right, info)
   end
 
   def delete(node)
@@ -34,32 +35,27 @@ class TreeOfBin
     return node.right
   end
 
-  def find_node(node, info)
+  def destroy_tree
+    @root = nil
+    @number_of_nodes = 0 
+  end
 
+  def empty?
+    @root == nil
   end
 
 	def number_of_nodes
-		Node.number_of_nodes
+		@number_of_nodes
 	end
 	
 end
 
 class Node
   attr_accessor :info, :left, :right  
-  @@number_of_nodes = 0
 
   def initialize(info=nil, left=nil, right=nil)
     @info = info
     @left = left
     @right = right   
-    @@number_of_nodes += 1
-  end
-
-  def Node.number_of_nodes
-    @@number_of_nodes
-  end
-
-  def Node.number_of_nodes=(num)
-    @@number_of_nodes = num
   end
 end

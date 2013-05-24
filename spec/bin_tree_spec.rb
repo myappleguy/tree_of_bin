@@ -35,13 +35,56 @@ describe TreeOfBin do
 		end
 	end
 
-	describe "#remove_item" do
-		it "should remove a found node from the tree" do
+	describe "#pull_item" do
+		it "should remove the root node from the tree when selected" do
 			@tree.put_item(4)
-			@tree.put_item(2) 
-			@tree.put_item(8) 
+			@tree.root.should_not == nil
+			@tree.put_item(2)
+			@tree.root.left.should_not == nil
+			@tree.pull_item(4)
+			@tree.root.should_not == nil
+			@tree.root.left.should == nil
+		end
+
+		it "should remove the root->left node from the tree when selected" do
+			@tree.put_item(4)
+			@tree.root.should_not == nil
+			@tree.put_item(2)
+			@tree.root.left.should_not == nil
 			@tree.pull_item(2)
-			@tree.root.left.info.should == nil
+			@tree.root.should_not == nil
+			@tree.root.left.should == nil
+		end
+
+		it "should remove the root->right node from the tree when selected" do
+			@tree.put_item(4)
+			@tree.root.should_not == nil
+			@tree.put_item(6)
+			@tree.root.right.should_not == nil
+			@tree.pull_item(6)
+			@tree.root.should_not == nil
+			@tree.root.right.should == nil
+		end
+	end
+
+	describe "#destroy_tree" do
+		it "should remove all nodes from tree" do
+			@tree.put_item(4)
+			@tree.put_item(2)
+			@tree.number_of_nodes.should == 2
+			@tree.destroy_tree
+			@tree.root.should == nil
+		end
+	end
+
+	describe "#empty?" do
+		it "should return true if tree is empty" do
+			@tree.empty?.should == true
+		end
+
+		it "should return false if tree has a node" do
+			@tree.put_item(4)
+			@tree.empty?.should == false
 		end
 	end
 
@@ -49,6 +92,14 @@ describe TreeOfBin do
 		it "should increment the number of nodes when a node is added" do
 			@tree.number_of_nodes.should == 0
 			@tree.put_item(4)
+			@tree.number_of_nodes.should == 1
+		end
+
+		it "should decrement the number of nodes when a node is removed" do
+			@tree.put_item(4)
+			@tree.put_item(2)
+			@tree.number_of_nodes.should == 2
+			@tree.pull_item(2)
 			@tree.number_of_nodes.should == 1
 		end
 	end

@@ -54,6 +54,7 @@ class TreeOfBin
 
   def preorder_traversal(root)
     return unless root
+    root.print_info
   end
 end
 

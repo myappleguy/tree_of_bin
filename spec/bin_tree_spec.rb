@@ -109,6 +109,13 @@ describe TreeOfBin do
       @tree.should_receive(:preorder_traversal).once
       @tree.print_nodes
     end
+
+    it 'will print value of root node' do
+      Node.stub(:print_info)
+      @tree.put_item(4)
+      @tree.root.should_receive(:print_info).once
+      @tree.print_nodes
+    end
   end
 
   describe '#preorder_traversal_itereative' do

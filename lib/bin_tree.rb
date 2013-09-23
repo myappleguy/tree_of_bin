@@ -3,9 +3,9 @@ class TreeOfBin
   attr_reader :root, :number_of_nodes
 
   def initialize
-    @root = nil 
-    @number_of_nodes = 0 
-	end
+    @root = nil
+    @number_of_nodes = 0
+  end
 
   def put_item(info)
     @number_of_nodes += 1
@@ -37,25 +37,32 @@ class TreeOfBin
 
   def destroy_tree
     @root = nil
-    @number_of_nodes = 0 
+    @number_of_nodes = 0
   end
 
   def empty?
     @root == nil
   end
 
-	def number_of_nodes
-		@number_of_nodes
-	end
-	
+  def number_of_nodes
+    @number_of_nodes
+  end
+
+  def print_nodes
+    preorder_traversal(@root)
+  end
+
+  def preorder_traversal(root)
+    return unless root
+  end
 end
 
 class Node
-  attr_accessor :info, :left, :right  
+  attr_accessor :info, :left, :right
 
   def initialize(info=nil, left=nil, right=nil)
     @info = info
     @left = left
-    @right = right   
+    @right = right
   end
 end

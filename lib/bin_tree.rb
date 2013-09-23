@@ -52,11 +52,26 @@ class TreeOfBin
     preorder_traversal(@root)
   end
 
+  def print_nodes_iterative
+    preorder_traversal_iterative(@root)
+  end
+
   def preorder_traversal(root)
     return unless root
     root.print_info
     preorder_traversal(root.left)
     preorder_traversal(root.right)
+  end
+
+  def preorder_traversal_iterative(root)
+    stack = [root]
+    while !stack.empty?
+      current_node = stack.pop
+      return nil unless current_node
+      current_node.print_info
+      stack.push(current_node.right) if current_node.right
+      stack.push(current_node.left) if current_node.left
+    end
   end
 end
 

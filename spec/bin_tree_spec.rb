@@ -128,8 +128,28 @@ describe TreeOfBin do
     end
   end
 
-  describe '#preorder_traversal_itereative' do
+  describe '#preorder_traversal_iterative' do
+    it 'returns if root is nil' do
+      @tree.should_receive(:preorder_traversal_iterative).once
+      @tree.print_nodes_iterative
+    end
 
+    it 'will print value of root node' do
+      Node.stub(:print_info)
+      @tree.put_item(4)
+      @tree.root.should_receive(:print_info).once
+      @tree.print_nodes_iterative
+    end
+
+    it 'follows left edge first' do
+      Node.stub(:print_info)
+      @tree.put_item(4)
+      @tree.put_item(2)
+      @tree.put_item(6)
+      @tree.root.should_receive(:right).ordered
+      @tree.root.should_receive(:left).ordered
+      @tree.print_nodes_iterative
+    end
   end
 end
 

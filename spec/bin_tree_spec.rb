@@ -116,6 +116,16 @@ describe TreeOfBin do
       @tree.root.should_receive(:print_info).once
       @tree.print_nodes
     end
+
+    it 'follows left edge first' do
+      Node.stub(:print_info)
+      @tree.put_item(4)
+      @tree.put_item(2)
+      @tree.put_item(6)
+      @tree.root.should_receive(:left).ordered
+      @tree.root.should_receive(:right).ordered
+      @tree.print_nodes
+    end
   end
 
   describe '#preorder_traversal_itereative' do

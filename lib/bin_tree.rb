@@ -55,6 +55,8 @@ class TreeOfBin
   def preorder_traversal(root)
     return unless root
     root.print_info
+    preorder_traversal(root.left)
+    preorder_traversal(root.right)
   end
 end
 
@@ -65,5 +67,9 @@ class Node
     @info = info
     @left = left
     @right = right
+  end
+
+  def print_info
+    puts @info
   end
 end
